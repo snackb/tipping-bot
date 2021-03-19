@@ -1,0 +1,9 @@
+{
+  "IsEncrypted": false,
+  "Values": {
+    "FUNCTIONS_WORKER_RUNTIME": "python",
+    "AzureWebJobsStorage": "DefaultEndpointsProtocol=https;AccountName=storageaccountfootyb41a;AccountKey=jKqflOStmwID5K4mLZKyz0H6ztCdgXFgVsm6QxpvPG62PONpV35pQCRZuBDS5gyKpcd4Mh3YfA8gVdZH5x08wg==",
+    "storageaccountfootyb41a_STORAGE": "DefaultEndpointsProtocol=https;AccountName=storageaccountfootyb41a;AccountKey=jKqflOStmwID5K4mLZKyz0H6ztCdgXFgVsm6QxpvPG62PONpV35pQCRZuBDS5gyKpcd4Mh3YfA8gVdZH5x08wg=="
+  },
+  "ConnectionStrings": {}
+}
