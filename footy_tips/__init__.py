@@ -22,7 +22,7 @@ def notify_ladder():
   script = soup.find("script", attrs={'src': None}, text=TAG_REGEX) 
   result = re.search(REGEX, script.contents[0])
   data = json.loads(result.group().strip()[:-1])
-  for index, record in enumerate(data['records'][0:10]):
+  for index, record in enumerate(data['records']):
     margin = re.search(MARGIN_REGEX, record['total']['info']['label'])
     p.add_row([str(index+1), record['name']['label'], str(record['total']['label']), margin.group()])
   text = ":rugby_football: *DPE Footy Tipping - Top 10 Leaderboard* :rugby_football:\n\n" + f"```{p.get_string()}```"
