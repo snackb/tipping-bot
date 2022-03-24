@@ -12,8 +12,8 @@ def notify_ladder():
   p.align['Rank'] = 'r'
   p.align['Tipper'] = 'l'
 
-  TAG_REGEX = re.compile('{"columns"(.*)', re.MULTILINE | re.DOTALL)
-  REGEX = re.compile('{"columns"(.*)')
+  TAG_REGEX = re.compile('records":\[(.*)', re.MULTILINE | re.DOTALL)
+  REGEX = re.compile('records":(\[.*?\])')
   MARGIN_REGEX = re.compile('(?<=\()[^\)]*', re.MULTILINE | re.DOTALL)
 
   # Collect and parse first page
@@ -21,8 +21,9 @@ def notify_ladder():
   soup = BeautifulSoup(page.text, 'html.parser')
   script = soup.find("script", attrs={'src': None}, text=TAG_REGEX) 
   result = re.search(REGEX, script.contents[0])
-  data = json.loads(result.group().strip()[:-1])
-  for index, record in enumerate(data['records']):
+  group = result.group(1)
+  data = json.loads(group)
+  for index, record in enumerate(data):
     margin = re.search(MARGIN_REGEX, record['total']['info']['label'])
     p.add_row([str(index+1), record['name']['label'], str(record['total']['label']), margin.group()])
   text = ":rugby_football: *DPE Footy Tipping - Top 10 Leaderboard* :rugby_football:\n\n" + f"```{p.get_string()}```"
@@ -57,4 +58,7 @@ def notify_ladder():
   print(message)
 
 def main(mytimer):
+  notify_ladder()
+
+if __name__ == "__main__":
   notify_ladder()
